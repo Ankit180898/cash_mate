@@ -29,26 +29,6 @@ class AppPages {
       page: () => ProfileView(),
       transition: Transition.fadeIn,
     ),
-    GetPage(
-      name: _Paths.UPDATE_POFILE,
-      page: () => UpdatePofileView(),
-    ),
-    GetPage(
-      name: _Paths.DETAIL_PRESENCE,
-      page: () => DetailPresenceView(),
-    ),
-    GetPage(
-      name: _Paths.ADD_EMPLOYEE,
-      page: () => AddEmployeeView(),
-    ),
-    GetPage(
-      name: _Paths.CHANGE_PASSWORD,
-      page: () => ChangePasswordView(),
-    ),
-    GetPage(
-      name: _Paths.ALL_PRESENCE,
-      page: () => AllPresenceView(),
-      binding: AllPresenceBinding(),
-    ),
+   
   ];
 }

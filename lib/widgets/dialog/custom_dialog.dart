@@ -1,3 +1,5 @@
+import 'package:cash_mate/config/app_color.dart';
+import 'package:cash_mate/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +36,7 @@ class CustomAlertDialog {
                 Text(
                   message,
                   style: TextStyle(
-                    color: secondarySoft,
+                    color: AppColor.secondarySoft,
                     height: 150 / 100,
                   ),
                 ),
@@ -58,13 +60,13 @@ class CustomAlertDialog {
                     onPressed: onCancel,
                     child: Text(
                       "cancel",
-                      style: TextStyle(color: secondarySoft),
+                      style: TextStyle(color: AppColor.secondarySoft),
                     ),
                     style: ElevatedButton.styleFrom(
+                      foregroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      primary: primaryExtraSoft,
+                      backgroundColor: AppColor.primaryExtraSoft,
                       elevation: 0,
-                      onPrimary: primary,
                     ),
                   ),
                 ),
@@ -75,7 +77,7 @@ class CustomAlertDialog {
                     onPressed: onConfirm,
                     child: const Text("confirm"),
                     style: ElevatedButton.styleFrom(
-                      primary: primary,
+                      backgroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       elevation: 0,
                     ),
@@ -120,7 +122,7 @@ class CustomAlertDialog {
                 Text(
                   message,
                   style: TextStyle(
-                    color: secondarySoft,
+                    color: AppColor.secondarySoft,
                     height: 150 / 100,
                   ),
                 ),
@@ -137,13 +139,13 @@ class CustomAlertDialog {
                     onPressed: onCancel,
                     child: Text(
                       "cancel",
-                      style: TextStyle(color: secondarySoft),
+                      style: TextStyle(color: AppColor.secondarySoft),
                     ),
                     style: ElevatedButton.styleFrom(
+                      foregroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      primary: primaryExtraSoft,
+                      backgroundColor: AppColor.primaryExtraSoft,
                       elevation: 0,
-                      onPrimary: primary,
                     ),
                   ),
                 ),
@@ -154,7 +156,7 @@ class CustomAlertDialog {
                     onPressed: onConfirm,
                     child: const Text("confirm"),
                     style: ElevatedButton.styleFrom(
-                      primary: primary,
+                      backgroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       elevation: 0,
                     ),
