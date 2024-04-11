@@ -25,4 +25,3 @@ getPages: AppPages.routes,
 );
   }
 }
-
