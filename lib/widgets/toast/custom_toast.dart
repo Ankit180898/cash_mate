@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../config/app_color.dart';
+
 class CustomToast {
   static errorToast(String? title, String? message) {
     Get.rawSnackbar(
@@ -39,7 +41,7 @@ class CustomToast {
           ),
         ],
       ),
-      backgroundColor: error,
+      backgroundColor: AppColor.error,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       margin: const EdgeInsets.symmetric(horizontal: 16),
       borderRadius: 8,
@@ -83,7 +85,7 @@ class CustomToast {
           ),
         ],
       ),
-      backgroundColor: success,
+      backgroundColor: AppColor.success,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       margin: const EdgeInsets.symmetric(horizontal: 16),
       borderRadius: 8,

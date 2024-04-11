@@ -21,9 +21,3 @@ extension DurationExtension on int {
   Duration get ms => Duration(milliseconds: this);
 }
 
-extension WidgetExtension on Widget {
-  Widget get ca => Container(
-        color: Colors.red,
-        child: this,
-      );
-}

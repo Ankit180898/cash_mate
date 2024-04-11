@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_color.dart';
+
 class CustomInput extends StatefulWidget {
   final TextEditingController controller;
   final String label;
@@ -36,9 +38,9 @@ class _CustomInputState extends State<CustomInput> {
         decoration: BoxDecoration(
           color: (widget.disabled == false)
               ? Colors.transparent
-              : primaryExtraSoft,
+              : AppColor.primaryExtraSoft,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(width: 1, color: secondaryExtraSoft),
+          border: Border.all(width: 1, color: AppColor.secondaryExtraSoft),
         ),
         child: TextField(
           readOnly: widget.disabled,
@@ -51,7 +53,7 @@ class _CustomInputState extends State<CustomInput> {
             label: Text(
               widget.label,
               style: TextStyle(
-                color: secondarySoft,
+                color: AppColor.secondarySoft,
                 fontSize: 14,
               ),
             ),
@@ -62,7 +64,7 @@ class _CustomInputState extends State<CustomInput> {
               fontSize: 14,
               fontFamily: 'poppins',
               fontWeight: FontWeight.w500,
-              color: secondarySoft,
+              color: AppColor.secondarySoft,
             ),
           ),
         ),

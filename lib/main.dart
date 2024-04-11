@@ -2,10 +2,21 @@ import 'package:cash_mate/routes/app_pages.dart';
 import 'package:cash_mate/config/custom_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
 
-void main() {
+Future<void> main() async {
+  await dotenv.dotenv.load(fileName: '.env');
+  final supaUri = dotenv.dotenv.env['SUPABASE_URL']; //get env key
+  final supaAnon = dotenv.dotenv.env['SUPABASE_ANONKEY'];
+  await Supabase.initialize(
+    url: supaUri!,
+    anonKey: supaAnon!,
+  );
   runApp(const MyApp());
 }
+
+final supabaseC = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,12 +27,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: CustomTheme.lightTheme,
-      darkTheme: CustomTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      initialRoute: Routes.LOGIN,
-getPages: AppPages.routes,    
-
-);
+      initialRoute:
+          supabaseC.auth.currentUser == null ? Routes.GETSTARTED : Routes.HOME,
+      getPages: AppPages.routes,
+    );
   }
 }

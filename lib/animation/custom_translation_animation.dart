@@ -7,12 +7,12 @@ class CustomTranslationAnimation extends StatefulWidget {
   final Offset begin;
   final Offset end;
   const CustomTranslationAnimation({
-    Key? key,
+    super.key,
     this.delay = Duration.zero,
     required this.child,
     this.begin = Offset.zero,
     this.end = Offset.zero,
-  }) : super(key: key);
+  });
 
   @override
   _CustomTranslationAnimationState createState() =>

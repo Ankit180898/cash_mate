@@ -1,11 +1,18 @@
+import 'package:cash_mate/config/app_color.dart';
+import 'package:cash_mate/controller/auth_controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
+import '../../routes/app_pages.dart';
 
-class LoginScreen extends GetView<LoginController> {
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Scaffold(
       backgroundColor: AppColor.primary,
       body: ListView(
@@ -14,15 +21,15 @@ class LoginScreen extends GetView<LoginController> {
           Container(
             height: MediaQuery.of(context).size.height * 35 / 100,
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.only(left: 32),
+            padding: const EdgeInsets.only(left: 32),
             decoration: BoxDecoration(
               gradient: AppColor.primaryGradient,
-              image: DecorationImage(
-                image: AssetImage('assets/images/pattern-1-1.png'),
+              image: const DecorationImage(
+                image: AssetImage('assets/3d_hand.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,14 +55,15 @@ class LoginScreen extends GetView<LoginController> {
             height: MediaQuery.of(context).size.height * 65 / 100,
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
-            padding: EdgeInsets.only(left: 20, right: 20, top: 36, bottom: 84),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 36, bottom: 84),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: 24),
-                  child: Text(
+                  margin: const EdgeInsets.only(bottom: 24),
+                  child: const Text(
                     'Log in',
                     style: TextStyle(
                       fontSize: 18,
@@ -66,15 +74,16 @@ class LoginScreen extends GetView<LoginController> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(left: 14, right: 14, top: 4),
-                  margin: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(left: 14, right: 14, top: 4),
+                  margin: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(width: 1, color: AppColor.secondaryExtraSoft),
+                    border: Border.all(
+                        width: 1, color: AppColor.secondaryExtraSoft),
                   ),
                   child: TextField(
-                    style: TextStyle(fontSize: 14, fontFamily: 'poppins'),
+                    style: const TextStyle(fontSize: 14, fontFamily: 'poppins'),
                     maxLines: 1,
                     controller: controller.emailC,
                     decoration: InputDecoration(
@@ -100,18 +109,20 @@ class LoginScreen extends GetView<LoginController> {
                 Material(
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.only(left: 14, right: 14, top: 4),
-                    margin: EdgeInsets.only(bottom: 24),
+                    padding: const EdgeInsets.only(left: 14, right: 14, top: 4),
+                    margin: const EdgeInsets.only(bottom: 24),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 1, color: AppColor.secondaryExtraSoft),
+                      border: Border.all(
+                          width: 1, color: AppColor.secondaryExtraSoft),
                     ),
                     child: Obx(
                       () => TextField(
-                        style: TextStyle(fontSize: 14, fontFamily: 'poppins'),
+                        style: const TextStyle(
+                            fontSize: 14, fontFamily: 'poppins'),
                         maxLines: 1,
-                        controller: controller.passC,
-                        obscureText: controller.obsecureText.value,
+                        controller: controller.passwordC,
+                        obscureText: controller.isHidden.value,
                         decoration: InputDecoration(
                           label: Text(
                             "Password",
@@ -124,9 +135,12 @@ class LoginScreen extends GetView<LoginController> {
                           border: InputBorder.none,
                           hintText: "*************",
                           suffixIcon: IconButton(
-                            icon: (controller.obsecureText != false) ? SvgPicture.asset('assets/icons/show.svg') : SvgPicture.asset('assets/icons/hide.svg'),
+                            icon: (controller.isHidden.value != false)
+                                ? const Icon(Iconsax.eye)
+                                : const Icon(Iconsax.eye_slash4),
                             onPressed: () {
-                              controller.obsecureText.value = !(controller.obsecureText.value);
+                              controller.isHidden.value =
+                                  !(controller.isHidden.value);
                             },
                           ),
                           hintStyle: TextStyle(
@@ -141,28 +155,31 @@ class LoginScreen extends GetView<LoginController> {
                   ),
                 ),
                 Obx(
-                  () => Container(
+                  () => SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       onPressed: () async {
                         if (controller.isLoading.isFalse) {
                           await controller.login();
+                          
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        backgroundColor: AppColor.primary,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
                       child: Text(
-                        (controller.isLoading.isFalse) ? 'Log in' : 'Loading...',
-                        style: TextStyle(
+                        (controller.isLoading.isFalse)
+                            ? 'Log in'
+                            : 'Loading...',
+                        style: const TextStyle(
                           fontSize: 16,
                           fontFamily: 'poppins',
                           fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 18),
-                        elevation: 0,
-                        primary: AppColor.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                     ),
@@ -170,14 +187,14 @@ class LoginScreen extends GetView<LoginController> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.only(top: 4),
+                  margin: const EdgeInsets.only(top: 4),
                   alignment: Alignment.centerLeft,
                   child: TextButton(
-                    onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
-                    child: Text("Forgot your password?"),
+                    onPressed: () {},
                     style: TextButton.styleFrom(
-                      primary: AppColor.secondarySoft,
+                      foregroundColor: AppColor.secondarySoft,
                     ),
+                    child: const Text("Forgot your password?"),
                   ),
                 ),
               ],

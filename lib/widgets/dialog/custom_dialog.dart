@@ -58,15 +58,15 @@ class CustomAlertDialog {
                   flex: 6,
                   child: ElevatedButton(
                     onPressed: onCancel,
-                    child: Text(
-                      "cancel",
-                      style: TextStyle(color: AppColor.secondarySoft),
-                    ),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       backgroundColor: AppColor.primaryExtraSoft,
                       elevation: 0,
+                    ),
+                    child: Text(
+                      "cancel",
+                      style: TextStyle(color: AppColor.secondarySoft),
                     ),
                   ),
                 ),
@@ -75,12 +75,12 @@ class CustomAlertDialog {
                   flex: 6,
                   child: ElevatedButton(
                     onPressed: onConfirm,
-                    child: const Text("confirm"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       elevation: 0,
                     ),
+                    child: const Text("confirm"),
                   ),
                 ),
               ],
@@ -137,15 +137,15 @@ class CustomAlertDialog {
                   flex: 6,
                   child: ElevatedButton(
                     onPressed: onCancel,
-                    child: Text(
-                      "cancel",
-                      style: TextStyle(color: AppColor.secondarySoft),
-                    ),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       backgroundColor: AppColor.primaryExtraSoft,
                       elevation: 0,
+                    ),
+                    child: Text(
+                      "cancel",
+                      style: TextStyle(color: AppColor.secondarySoft),
                     ),
                   ),
                 ),
@@ -154,12 +154,12 @@ class CustomAlertDialog {
                   flex: 6,
                   child: ElevatedButton(
                     onPressed: onConfirm,
-                    child: const Text("confirm"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       elevation: 0,
                     ),
+                    child: const Text("confirm"),
                   ),
                 ),
               ],

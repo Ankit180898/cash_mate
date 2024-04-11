@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class UserInfoCard extends StatelessWidget {
   const UserInfoCard({
-    Key? key,
+    super.key,
     required this.size,
-  }) : super(key: key);
+  });
 
   final Size size;
 
