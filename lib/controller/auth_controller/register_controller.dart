@@ -12,6 +12,13 @@ class RegisterController extends GetxController {
   var emailC = TextEditingController();
   var passwordC = TextEditingController();
   var nameC = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    emailC.dispose();
+    passwordC.dispose();
+    nameC.dispose();
+  }
 
   Future<void> register() async {
     if (emailC.text.isNotEmpty &&

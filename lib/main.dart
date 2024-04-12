@@ -26,9 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      initialRoute:
-          supabaseC.auth.currentUser == null ? Routes.GETSTARTED : Routes.HOME,
+      title: 'CashMate',
+      initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
     );
   }

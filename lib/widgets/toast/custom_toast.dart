@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../config/app_color.dart';
 
@@ -12,10 +13,7 @@ class CustomToast {
       messageText: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            "assets/icons/info-circle.svg",
-            color: Colors.white,
-          ),
+          const Icon(Iconsax.info_circle),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
@@ -56,10 +54,7 @@ class CustomToast {
       messageText: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            "assets/icons/success-circle.svg",
-            color: Colors.white,
-          ),
+           Icon(Iconsax.chart_success,color: AppColor.secondary,),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
