@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 enum RotationDirection { clockwise, counterclockwise }
 
@@ -21,3 +23,30 @@ extension DurationExtension on int {
   Duration get ms => Duration(milliseconds: this);
 }
 
+Widget carouselImageSlider(List<String> images) {
+  return CarouselSlider(
+    items: images.map((imgUrl) {
+      return Builder(
+        builder: (BuildContext context) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+            ),
+            child: SvgPicture.asset(
+              imgUrl,
+              fit: BoxFit.scaleDown,
+            ),
+          );
+        },
+      );
+    }).toList(),
+    options: CarouselOptions(
+      autoPlay: true,
+      autoPlayInterval: Duration(seconds: 3),
+      autoPlayAnimationDuration: Duration(milliseconds: 800),
+      autoPlayCurve: Curves.decelerate,
+    ),
+  );
+}

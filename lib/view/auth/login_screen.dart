@@ -1,62 +1,59 @@
 import 'package:cash_mate/config/app_color.dart';
 import 'package:cash_mate/controller/auth_controller/login_controller.dart';
+import 'package:cash_mate/controller/auth_controller/register_controller.dart';
+import 'package:cash_mate/utils/size_helpers.dart';
+import 'package:cash_mate/utils/utils.dart';
+import 'package:cash_mate/widgets/custom_button.dart';
+import 'package:cash_mate/widgets/dialog/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../routes/app_pages.dart';
+import '../../utils/image_constants.dart';
+import '../../widgets/user_info_card.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LoginController());
+    final controller = Get.put(RegisterController());
     return Scaffold(
-      backgroundColor: AppColor.primary,
+      resizeToAvoidBottomInset: true,
+      bottomNavigationBar: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: AppColor.secondarySoft,
+                  fontSize: 16),
+              "Create an account?",
+            ),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed(Routes.LOGIN);
+                },
+                child: Text(
+                  "Login",
+                  style: TextStyle(color: AppColor.primary, fontSize: 16),
+                ))
+          ],
+        ),
+      ),
       body: ListView(
+        physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 35 / 100,
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(left: 32),
-            decoration: BoxDecoration(
-              gradient: AppColor.primaryGradient,
-              image: const DecorationImage(
-                image: AssetImage('assets/3d_hand.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Open Source\nPresence App",
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.white,
-                    fontFamily: 'poppins',
-                    height: 150 / 100,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  "by github.com/mrezkys",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height * 65 / 100,
+            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
-            padding:
-                const EdgeInsets.only(left: 20, right: 20, top: 36, bottom: 84),
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 36),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,14 +61,78 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(bottom: 24),
                   child: const Text(
-                    'Log in',
+                    'Create an account',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 24,
                       fontFamily: 'poppins',
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
+                verticalSpace(16),
+                Center(
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        height: displayHeight(context) * 0.20,
+                        width: displayHeight(context) * 0.20,
+                        child: const CircleAvatar(
+                          radius: 30.0,
+                          backgroundImage:
+                              NetworkImage('https://via.placeholder.com/150'),
+                          backgroundColor: Colors.transparent,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: IconButton.filled(
+                            onPressed: () {
+                              CustomAlertDialog.showPresenceAlert(title: "Choose an avatar", message: "adsd", onConfirm: (){}, onCancel: (){});
+                            },
+                            icon: ImageConstants.avatar,
+                            iconSize: 16,
+                            alignment: Alignment.center,
+                          ))
+                    ],
+                  ),
+                ),
+                verticalSpace(16),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.only(left: 14, right: 14, top: 4),
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                        width: 1, color: AppColor.secondaryExtraSoft),
+                  ),
+                  child: TextField(
+                    style: const TextStyle(fontSize: 14, fontFamily: 'poppins'),
+                    maxLines: 1,
+                    controller: controller.emailC,
+                    decoration: InputDecoration(
+                      label: Text(
+                        "Name",
+                        style: TextStyle(
+                          color: AppColor.secondarySoft,
+                          fontSize: 14,
+                        ),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      border: InputBorder.none,
+                      hintText: "John Doe",
+                      hintStyle: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.w500,
+                        color: AppColor.secondarySoft,
+                      ),
+                    ),
+                  ),
+                ),
+                verticalSpace(8),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(left: 14, right: 14, top: 4),
@@ -106,6 +167,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                verticalSpace(8),
                 Material(
                   child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -154,49 +216,19 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(
-                  () => SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        if (controller.isLoading.isFalse) {
-                          await controller.login();
-                          
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 18),
-                        backgroundColor: AppColor.primary,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: Text(
-                        (controller.isLoading.isFalse)
-                            ? 'Log in'
-                            : 'Loading...',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.only(top: 4),
-                  alignment: Alignment.centerLeft,
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      foregroundColor: AppColor.secondarySoft,
-                    ),
-                    child: const Text("Forgot your password?"),
-                  ),
-                ),
+                verticalSpace(16),
+                Obx(() => CustomButton(
+                    text: controller.isLoading.isFalse ? "Register" : "Loading",
+                    onPressed: () {
+                      if (controller.isLoading.isFalse) {
+                        controller.register();
+                      }
+                    },
+                    bgcolor: AppColor.primary,
+                    height: displayHeight(context) * 0.08,
+                    width: displayWidth(context),
+                    textSize: 16,
+                    textColor: Colors.white)),
               ],
             ),
           ),

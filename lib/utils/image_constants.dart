@@ -13,4 +13,13 @@ class ImageConstants {
   static var trash = const Icon(Iconsax.trash);
   static var income = const Icon(Iconsax.money_recive1);
   static var expense = const Icon(Iconsax.money_send1);
+    static var avatar = const Icon(Iconsax.camera);
+
+
+  static const List<String> imagesSlider = [
+    'assets/1.svg',
+    'assets/2.svg',
+    'assets/3.svg',
+    'assets/4.svg'
+  ];
 }

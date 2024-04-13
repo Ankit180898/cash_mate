@@ -9,6 +9,7 @@ import '../../routes/app_pages.dart';
 class HomeController extends GetxController {
   var userEmail = ''.obs;
   var userName = ''.obs;
+  var imageUrl = ''.obs;
 
   @override
   void onInit() async {
@@ -27,6 +28,7 @@ class HomeController extends GetxController {
     // Save user's email and name in shared preferences
     await prefs.setString('name', user['name']);
     await prefs.setString('email', user['email']);
+
     // Update reactive variables
     userEmail.value = user['email'];
     userName.value = user['name'];

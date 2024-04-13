@@ -12,6 +12,7 @@ class RegisterController extends GetxController {
   var emailC = TextEditingController();
   var passwordC = TextEditingController();
   var nameC = TextEditingController();
+  var imageUrl = ''.obs;
   @override
   void dispose() {
     super.dispose();
@@ -36,6 +37,7 @@ class RegisterController extends GetxController {
           "email": emailC.text,
           "created_at": DateTime.now().toIso8601String(),
           "uid": res.user!.id,
+          "url": imageUrl
         });
 
         Get.offAllNamed(Routes.HOME);

@@ -1,4 +1,5 @@
 import 'package:cash_mate/config/app_color.dart';
+import 'package:cash_mate/utils/utils.dart';
 import 'package:cash_mate/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,7 @@ class CustomAlertDialog {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 16),
+                verticalSpace(16),
                 Text(
                   message,
                   style: TextStyle(
@@ -118,7 +119,7 @@ class CustomAlertDialog {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 16),
+                verticalSpace(16),
                 Text(
                   message,
                   style: TextStyle(

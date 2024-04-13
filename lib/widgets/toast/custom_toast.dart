@@ -54,7 +54,7 @@ class CustomToast {
       messageText: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           Icon(Iconsax.chart_success,color: AppColor.secondary,),
+           Icon(Iconsax.chart_success,color: AppColor.primary,),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
