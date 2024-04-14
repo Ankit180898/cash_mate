@@ -12,34 +12,19 @@ class AvatarPickerDialog extends StatefulWidget {
 }
 
 class _AvatarPickerDialogState extends State<AvatarPickerDialog> {
-  // Variables to hold avatars and state flags
-  List<String> avatars = [];
+
   // RxBool isLoading = true.obs;
   RxString selectedSegment = 'male'.obs; // Default segment is 'male'
 
-  // API Endpoints
-  final String maleAvatarsUrl = 'https://avatar.iran.liara.run/public';
-  final String femaleAvatarsUrl = 'https://avatar.iran.liara.run/public';
-
-// Function to generate a list of avatar URLs for a given gender
-  List<String> generateAvatarUrls(String baseUrl, int count) {
-    List<String> avatarUrls = [];
-
-    // Generate avatar URLs for the specified gender and count
-    for (int i = 1; i <= count; i++) {
-      avatarUrls.add('$baseUrl/$i');
-    }
-
-    return avatarUrls;
-  }
+  // Variables to hold avatarsList 
+  List<String> maleList = [
+    'https://avatar.iran.liara.run/public'
+  ];
+    List<String> femaleList = ['https://avatar.iran.liara.run/public'];
 
   @override
   Widget build(BuildContext context) {
-    // Generate lists of avatar URLs for male and female
-    List<String> maleAvatars =
-        generateAvatarUrls(maleAvatarsUrl, 10); // Change count as needed
-    List<String> femaleAvatars =
-        generateAvatarUrls(femaleAvatarsUrl, 10); // Change count as needed
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -84,8 +69,8 @@ class _AvatarPickerDialogState extends State<AvatarPickerDialog> {
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
                   final avatarUrl = selectedSegment.value == 'male'
-                      ? maleAvatars
-                      : femaleAvatars;
+                      ? maleList
+                      : femaleList;
         
                   return GestureDetector(
                     onTap: () {
