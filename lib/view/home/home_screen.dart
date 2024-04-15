@@ -1,7 +1,6 @@
 import 'package:cash_mate/controller/home_controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../utils/image_constants.dart';
 

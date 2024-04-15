@@ -25,27 +25,35 @@ extension DurationExtension on int {
 
 Widget carouselImageSlider(List<String> images) {
   return CarouselSlider(
+  
+    carouselController: CarouselController(),
+
     items: images.map((imgUrl) {
       return Builder(
         builder: (BuildContext context) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: const BoxDecoration(
-              color: Colors.transparent,
+          return Column(
+            children: [
+Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
+              ),
+              child: SvgPicture.asset(
+                imgUrl,
+                fit: BoxFit.scaleDown,
+              ),
             ),
-            child: SvgPicture.asset(
-              imgUrl,
-              fit: BoxFit.scaleDown,
-            ),
+            ],
+          
           );
         },
       );
     }).toList(),
     options: CarouselOptions(
       autoPlay: true,
-      autoPlayInterval: Duration(seconds: 3),
-      autoPlayAnimationDuration: Duration(milliseconds: 800),
+      autoPlayInterval: const Duration(seconds: 3),
+      autoPlayAnimationDuration: const Duration(milliseconds: 800),
       autoPlayCurve: Curves.decelerate,
     ),
   );

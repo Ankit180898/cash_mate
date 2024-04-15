@@ -1,19 +1,15 @@
 import 'package:cash_mate/config/app_color.dart';
-import 'package:cash_mate/controller/auth_controller/login_controller.dart';
 import 'package:cash_mate/controller/auth_controller/register_controller.dart';
 import 'package:cash_mate/utils/size_helpers.dart';
 import 'package:cash_mate/utils/utils.dart';
 import 'package:cash_mate/widgets/custom_button.dart';
-import 'package:cash_mate/widgets/dialog/custom_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../routes/app_pages.dart';
 import '../../utils/image_constants.dart';
 import '../../widgets/avatar_picker.dart';
-import '../../widgets/user_info_card.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -46,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
+      body: SizedBox(
         height: displayHeight(context),
         width: displayWidth(context),
         child: ListView(
@@ -81,8 +77,8 @@ class RegisterScreen extends StatelessWidget {
                           width: displayHeight(context) * 0.20,
                           child: const CircleAvatar(
                             radius: 30.0,
-                            backgroundImage:
-                                NetworkImage('https://avatar.iran.liara.run/public/boy'),
+                            backgroundImage: NetworkImage(
+                                'https://avatar.iran.liara.run/public/boy'),
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -94,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
                                 showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return AvatarPickerDialog();
+                                      return const AvatarPickerDialog();
                                     });
                               },
                               icon: ImageConstants.avatar,
@@ -119,7 +115,7 @@ class RegisterScreen extends StatelessWidget {
                       style:
                           const TextStyle(fontSize: 14, fontFamily: 'poppins'),
                       maxLines: 1,
-                      controller: controller.emailC,
+                      controller: controller.nameC,
                       decoration: InputDecoration(
                         label: Text(
                           "Name",

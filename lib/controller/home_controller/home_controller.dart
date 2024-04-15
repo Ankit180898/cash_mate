@@ -16,6 +16,7 @@ class HomeController extends GetxController {
     super.onInit();
     await getProfile();
   }
+  
 
   Future<void> getProfile() async {
     final prefs = await SharedPreferences.getInstance();
@@ -53,7 +54,7 @@ class HomeController extends GetxController {
       CustomToast.errorToast("Error", 'Unexpected error occurred');
     } finally {
       prefs.clear();
-      Get.offAllNamed(Routes.SPLASH);
+      Get.offAllNamed(Routes.LOGIN);
     }
   }
 }

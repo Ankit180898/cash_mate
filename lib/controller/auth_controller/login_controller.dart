@@ -2,7 +2,6 @@ import 'package:cash_mate/main.dart';
 import 'package:cash_mate/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../routes/app_pages.dart';
 

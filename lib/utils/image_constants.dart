@@ -13,8 +13,9 @@ class ImageConstants {
   static var trash = const Icon(Iconsax.trash);
   static var income = const Icon(Iconsax.money_recive1);
   static var expense = const Icon(Iconsax.money_send1);
-    static var avatar = const Icon(Iconsax.camera);
-
+  static var avatar = const Icon(Iconsax.camera);
+  static var leftArrow = const Icon(Iconsax.arrow_left);
+  static var rightArrow = const Icon(Iconsax.arrow_right);
 
   static const List<String> imagesSlider = [
     'assets/1.svg',

@@ -1,5 +1,4 @@
 import 'package:cash_mate/routes/app_pages.dart';
-import 'package:cash_mate/config/custom_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
