@@ -16,6 +16,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final argument = Get.arguments('selectedAvatarUrl');
     final controller = Get.put(RegisterController());
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -224,8 +225,9 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   verticalSpace(16),
                   Obx(() => CustomButton(
-                      text:
-                          controller.isLoading.isFalse ? "Register" : "Loading",
+                      text: controller.isLoading.isFalse
+                          ? "Register"
+                          : "...Loading",
                       onPressed: () {
                         if (controller.isLoading.isFalse) {
                           controller.register();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -9,6 +10,7 @@ class CustomButton extends StatelessWidget {
   final double height;
   final double width;
   final double textSize;
+  final bool isCenter;
 
   const CustomButton({
     super.key,
@@ -19,6 +21,7 @@ class CustomButton extends StatelessWidget {
     required this.width,
     required this.textSize,
     required this.textColor,
+    this.isCenter=true,
     this.borderRadius = 8.0,
   });
 
@@ -35,15 +38,39 @@ class CustomButton extends StatelessWidget {
             color: bgcolor,
             borderRadius: BorderRadius.circular(borderRadius),
           ),
-          child: Center(
+          child:isCenter==true? Center(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(16.0),
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
                   text,
-                  style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: textColor),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: textColor),
                 ),
+              ),
+            ),
+          ):Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: textColor),
+                    ),
+                  ),
+                  const Spacer(),
+                  Lottie.asset("assets/right_arrow.json",height: 24)
+                ],
               ),
             ),
           ),

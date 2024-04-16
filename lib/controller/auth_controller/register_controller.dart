@@ -13,6 +13,8 @@ class RegisterController extends GetxController {
   var passwordC = TextEditingController();
   var nameC = TextEditingController();
   var imageUrl = ''.obs;
+    RxString selectedAvatarUrl = ''.obs;
+
   @override
   void dispose() {
     super.dispose();

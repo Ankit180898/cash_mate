@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ImageConstants {
+  final Colors colors;
+  ImageConstants(this.colors);
   // static String icon = 'assets/icon.png';
   static var success = const Icon(Iconsax.tick_circle);
   static var failure = const Icon(Iconsax.info_circle);
@@ -15,12 +17,11 @@ class ImageConstants {
   static var expense = const Icon(Iconsax.money_send1);
   static var avatar = const Icon(Iconsax.camera);
   static var leftArrow = const Icon(Iconsax.arrow_left);
-  static var rightArrow = const Icon(Iconsax.arrow_right);
-
-  static const List<String> imagesSlider = [
-    'assets/1.svg',
-    'assets/2.svg',
-    'assets/3.svg',
-    'assets/4.svg'
-  ];
+  static var rightArrow = const Icon(
+    Iconsax.arrow_right,
+  );
 }
+//   static  List<GetStartedModel> getStartedList = [
+//     GetStartedModel(image: "assets/1.svg", heading: "Take Control of Your Finances Today!", desc: desc)
+//   ]
+// }
