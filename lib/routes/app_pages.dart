@@ -3,6 +3,7 @@ import 'package:cash_mate/view/auth/register_screen.dart';
 import 'package:cash_mate/view/home/home_screen.dart';
 import 'package:cash_mate/view/landing/get_started_screen.dart';
 import 'package:cash_mate/view/landing/splash_screen.dart';
+import 'package:cash_mate/view/profile/profile_screen.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -34,6 +35,11 @@ class AppPages {
     GetPage(
       name: _Paths.REGISTER,
       page: () => const RegisterScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileScreen(),
       transition: Transition.fadeIn,
     ),
   ];

@@ -1,8 +1,10 @@
+import 'dart:io';
+
 import 'package:cash_mate/config/app_color.dart';
+import 'package:cash_mate/controller/auth_controller/register_controller.dart';
 import 'package:cash_mate/routes/app_pages.dart';
 import 'package:cash_mate/utils/size_helpers.dart';
 import 'package:cash_mate/widgets/custom_button.dart';
-import 'package:cash_mate/widgets/dialog/custom_dialog.dart';
 import 'package:cash_mate/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,20 +18,11 @@ class AvatarPickerDialog extends StatefulWidget {
 }
 
 class _AvatarPickerDialogState extends State<AvatarPickerDialog> {
-  // Single list of 8 avatars (combined from male and female avatars)
-  List<String> avatarList = [
-    'camera_icon_url_or_asset_here', // Add a camera icon
-    'https://avatar.iran.liara.run/public/32',
-    'https://avatar.iran.liara.run/public/35',
-    'https://avatar.iran.liara.run/public/23',
-    'https://avatar.iran.liara.run/public/50',
-    'https://avatar.iran.liara.run/public/73',
-    'https://avatar.iran.liara.run/public/64',
-    'https://avatar.iran.liara.run/public/77',
-  ];
+  final controller = Get.find<RegisterController>();
 
   // RxString to hold the selected avatar URL
   RxString selectedAvatarUrl = ''.obs;
+  var isFile = false.obs;
   XFile? file;
 
   // ImagePicker instance
@@ -45,74 +38,54 @@ class _AvatarPickerDialogState extends State<AvatarPickerDialog> {
         title: const Text('Pick an Avatar'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           // Main content of the dialog
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  // Avatar selection grid
-                  SizedBox(
-                    height: displayHeight(context) * 0.6,
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 1,
-                      ),
-                      itemCount: avatarList.length,
-                      itemBuilder: (context, index) {
-                        final avatarUrl = avatarList[index];
-
-                        // Handle the camera image click
-                        if (avatarUrl == 'camera_icon_url_or_asset_here') {
-                          return AvatarItem(
-                            avatarUrl: avatarUrl,
-                            isSelected: false,
-                            onTap: () => showBottomSheetOptions(context),
-                          );
-                        } else {
-                          // Handle the regular avatar selection
-                          return AvatarItem(
-                            avatarUrl: avatarUrl,
-                            isSelected: avatarUrl == selectedAvatarUrl.value,
-                            onTap: () {
-                              selectedAvatarUrl.value = avatarUrl;
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                ],
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                
               ),
+              itemCount: controller.avatarList.length,
+              itemBuilder: (context, index) {
+                var avatarUrl = controller.avatarList[index];
+
+                // Handle the camera image click
+                if (avatarUrl ==
+                    'https://i.pinimg.com/originals/d4/3d/fb/d43dfb69c55f602950d23b9df2450cb6.jpg') {
+                  return AvatarItem(
+                    isFile: file!.path.isEmpty?false:true,
+                    avatarUrl: file!.path.isEmpty?avatarUrl:file!.path,
+                    isSelected: false,
+                    onTap: () => showBottomSheetOptions(context),
+                  );
+                } else {
+                  // Handle the regular avatar selection
+                  return AvatarItem(
+                    isFile: false,
+                    avatarUrl: avatarUrl,
+                    isSelected: avatarUrl == selectedAvatarUrl.value,
+                    onTap: () {
+                      selectedAvatarUrl.value = avatarUrl.toString();
+                    },
+                  );
+                }
+              },
             ),
           ),
           // "Get Started" button at the bottom of the screen
           Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
             child: CustomButton(
-              isCenter: false,
+              isCenter: true,
               text: "Get Started",
               onPressed: () {
                 // Check if an avatar is selected
                 if (selectedAvatarUrl.value.isNotEmpty) {
-                  // Perform any additional tasks with the selected avatar URL
-                  // Then navigate to the desired route
-
-                  // You can use the selected avatar URL for further processing
-                  // e.g., passing it as an argument to the next route
-                  String avatarUrl = selectedAvatarUrl.value;
-
-                  // Navigate to the desired route (e.g., Routes.REGISTER)
-                  Get.offAllNamed(
-                    Routes.REGISTER,
-                    arguments: {
-                      'selectedAvatarUrl': avatarUrl,
-                    },
-                  );
                 } else {
                   // Display a message if no avatar is selected
                   Get.snackbar(
@@ -145,16 +118,17 @@ class _AvatarPickerDialogState extends State<AvatarPickerDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Gallery'),
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
                 onTap: () {
                   pickImage(ImageSource.gallery);
+                  
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.camera),
-                title: Text('Camera'),
+                leading: const Icon(Icons.camera),
+                title: const Text('Camera'),
                 onTap: () {
                   pickImage(ImageSource.camera);
                   Navigator.pop(context);
@@ -168,34 +142,37 @@ class _AvatarPickerDialogState extends State<AvatarPickerDialog> {
   }
 
   // Function to handle image picking
-  Future<void> pickImage(ImageSource source) async {
+Future<void> pickImage(ImageSource source) async {
+    isFile.value = true;
     // Use image picker to pick an image from the specified source (gallery or camera)
     final pickedFile = await _picker.pickImage(
-      source: source,
+        source: source,
     );
 
     if (pickedFile != null) {
-      // Update the state with the new image URL
-      file = pickedFile.path as XFile?;
+        // Update the state with the new image URL
+        file = pickedFile; // Assign pickedFile directly to file variable
     } else {
-      // Handle the case where no image is selected (e.g., user cancels the operation)
+        // Handle the case where no image is selected (e.g., user cancels the operation)
 
-      CustomToast.errorToast('No Image Selected',
-          'Please select an image from the gallery or camera.');
+        CustomToast.errorToast('No Image Selected',
+            'Please select an image from the gallery or camera.');
     }
-  }
+}
 }
 
 class AvatarItem extends StatelessWidget {
-  final String avatarUrl;
+  var avatarUrl;
   final bool isSelected;
+  final bool isFile;
   final VoidCallback onTap;
 
-  const AvatarItem({
+  AvatarItem({
     required this.avatarUrl,
     required this.isSelected,
     required this.onTap,
     super.key,
+    required this.isFile,
   });
 
   @override
@@ -208,9 +185,9 @@ class AvatarItem extends StatelessWidget {
           // Display the avatar image
           CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(
-              avatarUrl,
-            ),
+            child: isFile == true
+                ? Image.file(File(avatarUrl))
+                : Image.network(avatarUrl),
           ),
           // Display selection ring if avatar is selected
           if (isSelected)

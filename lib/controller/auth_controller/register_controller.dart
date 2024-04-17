@@ -13,7 +13,17 @@ class RegisterController extends GetxController {
   var passwordC = TextEditingController();
   var nameC = TextEditingController();
   var imageUrl = ''.obs;
-    RxString selectedAvatarUrl = ''.obs;
+  RxString selectedAvatarUrl = ''.obs;
+  List<String> avatarList = [
+    'https://i.pinimg.com/originals/d4/3d/fb/d43dfb69c55f602950d23b9df2450cb6.jpg', // Add a camera icon
+    'https://avatar.iran.liara.run/public/32',
+    'https://avatar.iran.liara.run/public/35',
+    'https://avatar.iran.liara.run/public/23',
+    'https://avatar.iran.liara.run/public/50',
+    'https://avatar.iran.liara.run/public/73',
+    'https://avatar.iran.liara.run/public/64',
+    'https://avatar.iran.liara.run/public/77',
+  ];
 
   @override
   void dispose() {

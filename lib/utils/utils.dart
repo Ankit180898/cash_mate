@@ -23,6 +23,8 @@ extension DurationExtension on int {
   Duration get ms => Duration(milliseconds: this);
 }
 
+
+
 Widget carouselImageSlider(List<String> images) {
   return CarouselSlider(
   

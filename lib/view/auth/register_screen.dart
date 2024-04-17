@@ -16,7 +16,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final argument = Get.arguments('selectedAvatarUrl');
     final controller = Get.put(RegisterController());
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -76,9 +75,10 @@ class RegisterScreen extends StatelessWidget {
                         SizedBox(
                           height: displayHeight(context) * 0.20,
                           width: displayHeight(context) * 0.20,
-                          child: const CircleAvatar(
+                          child:  CircleAvatar(
                             radius: 30.0,
-                            backgroundImage: NetworkImage(
+                            onBackgroundImageError: (exception, stackTrace) => const Icon(Iconsax.add),
+                            backgroundImage: const NetworkImage(
                                 'https://avatar.iran.liara.run/public/boy'),
                             backgroundColor: Colors.transparent,
                           ),
@@ -94,7 +94,7 @@ class RegisterScreen extends StatelessWidget {
                                       return const AvatarPickerDialog();
                                     });
                               },
-                              icon: ImageConstants.avatar,
+                              icon: ImageConstants(colors:AppColor.secondaryExtraSoft ).avatar,
                               iconSize: 16,
                               alignment: Alignment.center,
                             ))
