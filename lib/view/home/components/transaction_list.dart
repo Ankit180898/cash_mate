@@ -43,21 +43,12 @@ class _SegmentedButtonExampleState extends State<SegmentedButtonExample> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // ToggleButtons for "Transaction" and "Income"
           ToggleButtons(
+
             borderRadius: BorderRadius.circular(28),
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text('Transaction'),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text('Income'),
-              ),
-            ],
             isSelected: isSelected,
             onPressed: (int index) {
               setState(() {
@@ -67,6 +58,16 @@ class _SegmentedButtonExampleState extends State<SegmentedButtonExample> {
                 }
               });
             },
+            children: const [
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 16),
+                child: Text('Transaction'),
+              ),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 16),
+                child: Text('Income'),
+              ),
+            ],
           ),
           // Display the list of the selected category
           Expanded(

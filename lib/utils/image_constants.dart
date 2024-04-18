@@ -21,5 +21,6 @@ class ImageConstants {
   Icon get leftArrow => Icon(Iconsax.arrow_left, color: colors);
   Icon get rightArrow => Icon(Iconsax.arrow_right, color: colors);
     Icon get plus => Icon(Iconsax.add, color: colors);
+    Icon get close => Icon(Iconsax.clipboard_close, color: colors);
 
 }
