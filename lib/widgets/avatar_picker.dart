@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cash_mate/config/app_color.dart';
 import 'package:cash_mate/controller/auth_controller/register_controller.dart';
-import 'package:cash_mate/routes/app_pages.dart';
 import 'package:cash_mate/utils/size_helpers.dart';
 import 'package:cash_mate/widgets/custom_button.dart';
 import 'package:cash_mate/widgets/toast/custom_toast.dart';

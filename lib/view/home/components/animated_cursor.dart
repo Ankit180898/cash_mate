@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AnimatedCursor extends StatefulWidget {
   final double height;
-  const AnimatedCursor({Key? key, required this.height}) : super(key: key);
+  const AnimatedCursor({super.key, required this.height});
 
   @override
   AnimatedCursorState createState() => AnimatedCursorState();

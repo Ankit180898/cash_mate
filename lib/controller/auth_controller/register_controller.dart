@@ -1,10 +1,10 @@
 import 'package:cash_mate/main.dart';
+import 'package:cash_mate/widgets/bottom_navigation.dart';
 import 'package:cash_mate/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   RxBool isLoading = false.obs;
@@ -52,7 +52,7 @@ class RegisterController extends GetxController {
           "url": imageUrl
         });
 
-        Get.offAllNamed(Routes.HOME);
+        Get.off(const BottomNav());
       } catch (e) {
         isLoading.value = false;
         CustomToast.errorToast("Error", e.toString());

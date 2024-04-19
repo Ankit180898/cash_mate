@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MessageContainer extends StatelessWidget {
-   MessageContainer({super.key});
+   const MessageContainer({super.key});
 
   final double height = 50;
 

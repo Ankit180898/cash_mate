@@ -2,16 +2,11 @@ import 'package:cash_mate/animation/custom_animation.dart';
 import 'package:cash_mate/utils/utils.dart';
 import 'package:cash_mate/view/home/components/keyboard_pad.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PaymentScreen extends StatefulWidget {
   final String message;
   bool isIncome;
-  const PaymentScreen({
-    super.key,
-    required this.message,
-    required this.isIncome
-  });
+  PaymentScreen({super.key, required this.message, required this.isIncome});
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -117,10 +112,10 @@ class _PaymentScreenState extends State<PaymentScreen>
                                               style: const TextStyle(
                                                   fontSize: 18,
                                                   color: Colors.black),
-                                              children: [
+                                              children: const [
                                                 TextSpan(
                                                     text: "Ankit",
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                         fontSize: 18,
                                                         color: Colors.black,
                                                         fontWeight:

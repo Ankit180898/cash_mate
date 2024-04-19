@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 enum RotationDirection { clockwise, counterclockwise }
 
@@ -60,4 +61,44 @@ Container(
       autoPlayCurve: Curves.decelerate,
     ),
   );
+
 }
+//30 medium
+TextStyle mediumTextStyle(double size, Color color) => GoogleFonts.epilogue(
+      textStyle: TextStyle(
+        color: color,
+        height: 2,
+        fontSize: size,
+        fontWeight: FontWeight.w700,
+      ),
+    );
+//72 when big
+// 48 when mobile size
+TextStyle titleText(double size, Color color) => GoogleFonts.inter(
+      textStyle: TextStyle(
+        color: color,
+        height: 1.2,
+        fontSize: size,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+    
+//24
+TextStyle normalText(double size, Color color) => GoogleFonts.epilogue(
+      textStyle: TextStyle(
+          height: 1.5,
+          color: color,
+          fontSize: size,
+          fontWeight: FontWeight.normal),
+    );
+
+List<String> categories = [
+  'All',
+  'Articles',
+  'Packages',
+  'UI',
+  'Projects',
+  'YTChannel',
+  'News'
+];
+

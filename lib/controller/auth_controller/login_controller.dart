@@ -1,9 +1,9 @@
 import 'package:cash_mate/main.dart';
+import 'package:cash_mate/widgets/bottom_navigation.dart';
 import 'package:cash_mate/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
@@ -25,7 +25,7 @@ class LoginController extends GetxController {
             .signInWithPassword(email: emailC.text, password: passwordC.text);
 
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME);
+        Get.offAll(const BottomNav());
 
         return true;
       } catch (e) {

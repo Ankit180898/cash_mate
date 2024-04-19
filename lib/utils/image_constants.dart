@@ -20,7 +20,8 @@ class ImageConstants {
   Icon get avatar => Icon(Icons.camera, color: colors);
   Icon get leftArrow => Icon(Iconsax.arrow_left, color: colors);
   Icon get rightArrow => Icon(Iconsax.arrow_right, color: colors);
-    Icon get plus => Icon(Iconsax.add, color: colors);
-    Icon get close => Icon(Iconsax.clipboard_close, color: colors);
+  Icon get plus => Icon(Iconsax.add, color: colors);
+  Icon get close => Icon(Iconsax.clipboard_close, color: colors);
+    Icon get wallet => Icon(Iconsax.wallet, color: colors);
 
 }

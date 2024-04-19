@@ -14,11 +14,11 @@ class KeyboardPad extends StatefulWidget {
   final VoidCallback onPop;
   final String action;
   const KeyboardPad({
-    Key? key,
+    super.key,
     this.onSend,
     required this.action,
     required this.onPop,
-  }) : super(key: key);
+  });
 
   @override
   _KeyboardPadState createState() => _KeyboardPadState();
@@ -135,7 +135,7 @@ class _KeyboardPadState extends State<KeyboardPad>
                   child: Column(
                     children: [
                       CustomAnimation(
-                          delay: 1000.ms, child:  MessageContainer()),
+                          delay: 1000.ms, child:  const MessageContainer()),
                       verticalSpace(12),
                       Container(
                         decoration: BoxDecoration(boxShadow: [

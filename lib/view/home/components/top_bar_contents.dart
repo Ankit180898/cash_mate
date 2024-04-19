@@ -19,13 +19,13 @@ class TopBarContents extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello, \n$username!",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              "Hello, $username",
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             InkWell(
               onTap: () => Get.toNamed(Routes.PROFILE),
               child: const CircleAvatar(
-                radius: 30.0,
+                radius: 20.0,
                 backgroundImage: NetworkImage(
                     'https://avatar.iran.liara.run/public/boy',
                     scale: 10),
